@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<title>{:C('sitename')}</title>
+	<style>
+		/*公共头部*/
+		* { margin:0px; padding:0px; list-style-type:none;font-family: "微软雅黑";}
+		body{ font-family: "微软雅黑"; font-size:14px;overflow:hidden;overflow-y:auto; }
+		h1, h2, h3, h4,  ul, ol, dd, dl, form { margin: 0; font-family: "微软雅黑";}
+		ul, li,img { list-style:none; margin:0; padding:0; }
+
+		.wrap { max-width: 1200px; margin-right: auto; margin-left: auto; *width: 1200px;font-family: '微软雅黑';}
+		a{ text-decoration:none; color:#333; }
+		a,img{border:0;}
+
+		a:hover{ text-decoration: none;}
+		.c-b{clear: both;font-size:0 ;}
+		body{background: fixed url(/public/Home/user/image/zc_bg.jpg)no-repeat;background-size: 100% 100% ;}
+		.reg_zhuce{width:100%;height:auto;display:block;margin: 0 auto;margin-top: 150px;}
+		.reg_zhuce p{background: rgba(255,255,255,0.1);line-height: 50px;margin-bottom: 5px;padding-left:25px;padding-right: 15px;}
+		.reg_zhuce p img{vertical-align: middle;width:25px;height: 25px;}
+		.reg_zhuce p input{height: 30px;width:75%;background: none;border:none;margin-left: 15px;color: #d4d2cf;outline:none; }
+		::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+			color:    #d4d2cf;
+		}
+		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+			color:    #d4d2cf;
+		}
+		::-moz-placeholder { /* Mozilla Firefox 19+ */
+			color:    #d4d2cf;
+		}
+		:-ms-input-placeholder { /* Internet Explorer 10-11 */
+			color:    #d4d2cf;
+		}
+		/*获取头像*/
+		.my_box{
+			width:60px;
+			height:60px;
+			overflow: hidden;
+			border:1px solid #ccc;
+			border-radius:15px;
+
+			/*position:fixed;*/
+			/*left:0;*/
+			/*right:0;*/
+			/*top:0;*/
+			/*bottom:0;*/
+			margin:auto;
+			transition: .6s;
+			cursor: pointer;
+			margin-top: -20px;
+			margin-left: 122px;
+		}
+		.my_box:hover{
+			animation:my_box 0.5s forwards;
+			transition: .5s;
+		}
+		@keyframes my_box{
+			form{
+				transform: rotate(0deg);
+			}
+			to{
+				transform: rotate(360deg);
+			}
+		}
+		.my_box img{
+			width:100%;
+		}
+		.xiantiao{
+			display: block;
+			width:86%;
+			height:1px;
+			border-bottom: 1px solid #ccc;
+			margin:0 auto;
+		}
+
+		.pic_box{
+			width:80%;
+			height: 520px;
+			border-radius:8px;
+			background: rgba(255,255,255,0.8);
+			border:1px solid #ccc;
+			position: fixed;
+			top:-1000px;
+			left:0;
+			right:0;
+			margin:0 auto;
+			overflow: auto;
+		}
+		.header{
+			height:45px;
+			text-align: center;
+		}
+		.close{
+			color:#000;
+			font-size: 21px;
+			line-height: 1;
+			text-shadow: 0 1px 0 #fff;
+			opacity: 1.2;
+			position:absolute;
+			right:8px;
+			top:2px;
+			cursor: pointer;
+		}
+		.pic_box ul{
+			padding: 0;
+			margin:0;
+			width:96%;
+
+			margin:10px auto;
+		}
+		.pic_box ul li{
+			display: block;
+			list-style: none;
+			width:59px;
+			height:59px;
+			float: left;
+			border-radius: 15%;
+			border:1px solid #ccc;
+			margin:5px 5px;
+			transition: .6s;
+			cursor: pointer;
+			overflow: hidden;
+		}
+		.pic_box ul li:hover{
+			transform: scale(1.15);
+			transition: .5s;
+		}
+		.pic_box ul li img{
+			width:100%;
+		}
+		.bt_box{
+			width: 100%;
+			text-align: center;
+			font-size: 14px;
+			margin-top: 30px;
+			clear: both;
+			padding-top: 36px;
+			padding-bottom: 30px;
+		}
+		.bt_box .gb{
+			display:inline-block;
+			width:120px;
+			height:35px;
+			border-radius: 8px;
+			background:#f3f3f3;
+			color:#444;
+			line-height: 35px;
+		}
+		.bt_box .queren{
+			display: inline-block;
+			width:120px;
+			height:35px;
+			border-radius: 8px;
+			background:#cba163;
+			color:#fff;
+			line-height: 35px;
+		}
+
+		.reg_btn{
+			background:-webkit-linear-gradient(#ebca87,#c19355);
+
+			background:-o-linear-gradient(#ebca87,#c19355);
+
+			background:-moz-linear-gradient(#ebca87,#c19355);
+
+			background:linear-gradient(#ebca87,#c19355);
+			width:80%;
+			height: 40px;
+			display: block;
+			margin: 0 auto;
+			border:none;
+			border-radius: 30px;
+			box-shadow: 0 0 15px rgba(0,0,0,0.3);
+			margin-bottom:24px;
+			margin-top: 45px;
+		}
+	</style>
+</head>
+<body>
+
+
+
+
+
+
+<form class="reg_zhuce"  id="uploadForm" action="{:U('register')}" role="form" method="post" >
+	<p>
+		<img src="/public/Home/user/image/hu.png"/>
+		<input type="text" id="username" name="username"  placeholder="用户名" required>
+	</p>
+	<p>
+		<img src="/public/Home/user/image/ys.png"/>
+		<input type="password" id="password" name="password" class="form-control" placeholder="密码(最好含有大小写和数字)" required>
+	</p>
+	<p>
+		<img src="/public/Home/user/image/ys.png"/>
+		<input type="password" id="repassword" name="" class="form-control" placeholder="再次输入密码" required>
+
+	</p>
+
+	<!--获取头像-->
+
+	<!--div class="wrap" style="margin-top: 33px;" >
+		<a class="t"></a>
+		<span style="color: #fff;padding-left: 25px;">点击头像选取：</span>
+		<div class="my_box">
+				<input class="jide" name="headimgurl" type="hidden" value="/public/Home/user/image/0.png" />
+				<img src="/public/Home/user/image/0.png" class="my_pic">
+		</div>
+		<div class="pic_box" id="pic_box">
+			<div class="header">
+				<p>设置头像</p>
+				<span class="close">x</span>
+			</div>
+			<span class="xiantiao"></span>
+			<ul>
+				<li><img src="/public/Home/user/image/0.png"></li>
+				<li><img src="/public/Home/user/image/1.png"></li>
+				<li><img src="/public/Home/user/image/3.png"></li>
+				<li><img src="/public/Home/user/image/4.png"></li>
+				<li><img src="/public/Home/user/image/5.png"></li>
+				<li><img src="/public/Home/user/image/6.png"></li>
+				<li><img src="/public/Home/user/image/7.png"></li>
+
+			</ul>
+			<div class="bt_box">
+				<a class="gb" href="javascript:">关闭</a>
+				<a class="queren" href="javascript:">保存头像</a>
+			</div>
+		</div>
+	</div-->
+
+	<!--获取头像-->
+
+	<button class="btn reg_btn" type="submit">注册</button>
+	<a href="" style="color: #fff;display:block;text-align: center;">立即登录</a>
+</form>
+
+
+
+
+<script src="__PUBLIC__/Admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="__PUBLIC__/Common/js/ajaxForm.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		$('.reg_zhuce').ajaxForm({
+			beforeSubmit: checkForm,
+			success: complete,
+			dataType: 'json'
+		});
+		function CheckStr(str){
+			var myReg = "[@/'\"#!$%&^*]+";
+			var reg = new RegExp(myReg);
+			if(reg.test(str)){
+				return true;
+			} else {
+				return false;
+			}
+		}
+		function checkForm(){
+			if( '' == $.trim($('#username').val())){
+				layer.alert('用户名不能为空', {icon: 5}, function(index){
+					layer.close(index);
+					$('#username').focus();
+				});
+				return false;
+			}
+			console.log(CheckStr($('#username').val()));
+			if (CheckStr($('#username').val())) {
+				layer.alert('用户名不能有特殊字符', {icon: 5}, function(index){
+					layer.close(index);
+					$('#username').focus();
+				});
+				return false;
+			}
+
+			if ($('#password').val().length < 6) {
+				layer.alert('密码长度不能低于6位', {icon: 5}, function(index){
+					layer.close(index);
+					$('#password').focus();
+				});
+				return false;
+			}
+
+			if( '' == $.trim($('#password').val())){
+				layer.alert('密码不能为空', {icon: 5}, function(index){
+					layer.close(index);
+					$('#password').focus();
+				});
+				return false;
+			}
+
+			if ($('#password').val() != $('#repassword').val()) {
+				layer.alert('两次输入的密码不一致', {icon: 5}, function(index){
+					layer.close(index);
+					$('#password').focus();
+				});
+				return false;
+			}
+		}
+		function complete(data){
+			if(data.status==1){
+				$('.btn').attr('disabled','disabled');
+				layer.msg(data.info, function(index){
+					layer.close(index);
+					window.location.href=data.url;
+				});
+			}else{
+				layer.msg(data.info);
+				$('#password').val('').focus();
+				return false;
+			}
+		}
+	});
+</script>
+<script type="text/javascript">
+	$(".close,.gb").click(function(){
+		$(".pic_box").animate({
+			'top':'-1000px'
+		},500);
+	}),
+			$(".my_box").click(function(){
+				$(".pic_box").animate({
+					'top':'78px',
+				},300);
+			}),
+			$(".queren").click(function(){
+				var src = $(".jide").val();
+
+				//效果展示,在服务器中把这一段删除,用上面那一段
+				if(src != ""){
+					$(".my_pic").attr('src',src);
+					$(".pic_box").animate({
+						'top':'-1000px'
+					},500);
+				}else{
+					return false;
+				}
+
+			});
+	var $box = document.getElementById('pic_box');
+	var $li = $box.getElementsByTagName('li');
+	var index = 0;
+	for(var i=0;i<$li.length;i++){
+		$li[i].index=i;
+		$li[i].onclick=function(){
+			$li[index].style.borderRadius="15%";
+			this.style.borderRadius="50%";
+			index = this.index;
+		}
+	}
+	$(".pic_box li img").click(function(){
+		var src=$(this).attr("src");
+		$(".jide").val(src);
+	})
+</script>
+
+</body>
+</html>
